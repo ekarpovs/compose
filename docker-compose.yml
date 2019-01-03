@@ -1,0 +1,106 @@
+version: "3.5"
+
+services:
+  web-app-api-gtw:
+    container_name: web-api
+    build: ../gateways/web-app-api-gtw
+    image: web-api
+    depends_on:
+     - 'redis'
+     - 'auth-admin'
+     - 'auth'
+     - 'author-admin'
+     - 'author'
+    command: nodemon --debug index.js
+    # volumes:
+    #  - ../authentication-admin:/app
+    ports:
+      - '3000:3000'
+    networks:
+      - mcrsrv-net
+
+  auth-admin:
+    container_name: auth-admin
+    build: ../services/authentication-admin
+    image: auth-admin
+    depends_on: 
+     - 'db'
+    command: nodemon --debug index.js
+    # volumes:
+    #  - ../authentication-admin:/app
+    ports:
+      - '3100:3100'
+    networks:
+      - mcrsrv-net
+
+  auth:
+    container_name: auth
+    build: ../services/authentication
+    image: auth
+    depends_on: 
+     - 'db'
+    command: nodemon --debug index.js
+    # volumes:
+    #  - ../authentication:/app
+    ports:
+      - '3200:3200'
+    networks:
+      - mcrsrv-net
+
+  author-admin:
+    container_name: author-admin
+    build: ../services/authorization-admin
+    image: author-admin
+    depends_on: 
+     - 'db'
+    command: nodemon --debug index.js
+    # volumes:
+    #  - ../authentication:/app
+    ports:
+      - '3300:3300'
+    networks:
+      - mcrsrv-net
+
+  author:
+    container_name: author
+    build: ../services/authorization
+    image: author
+    depends_on: 
+     - 'db'
+    command: nodemon --debug index.js
+    # volumes:
+    #  - ../authentication:/app
+    ports:
+      - '3400:3400'
+    networks:
+      - mcrsrv-net
+
+  db:
+    container_name: db
+    image: mongo
+    # volumes:
+    #   - ./db:/data"
+    ports:
+      - '27017:27017'
+    networks:
+      - mcrsrv-net
+      
+  redis:
+    container_name: redis
+    image: 'redis:3.2-alpine'
+    ports:
+      - '6379:6379'
+    networks:
+      - mcrsrv-net
+    # volumes:
+    #   - 'redis:/data'
+
+  # volumes:
+  # #   db-data: {}
+  #   redis: {}
+
+
+networks:
+  mcrsrv-net:
+    name: mcrsrv-net
+    driver: bridge
