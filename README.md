@@ -36,5 +36,21 @@ Architecture
 * A Node.js background worker service
 * Example of An Angular front end SPA - it is not dockernazed.
 
-Note
-----
+Folders structure:
+
+mcrsrv-postman
+clients
+  web-client
+micro-services
+  compose
+  services
+    authentication
+    authentication-admin
+    authorization
+    authorization-admin
+    audit
+    audit-admin
+    background
+  gateways  
+    web-app-api-gtw
+    mobile-app-api-gtw
