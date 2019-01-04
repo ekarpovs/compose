@@ -34,7 +34,7 @@ Architecture
 * A Node.js audit service
 * A Node.js producer service
 * A Node.js background worker service
-* Example of An Angular front end SPA - it is not dockenazed.
+* Example of An Angular front end SPA - it is not dockernazed.
 
 Note
 ----
