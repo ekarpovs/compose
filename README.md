@@ -21,7 +21,7 @@ The app will be running at [http://localhost:4300](http://localhost:43000).
 Architecture
 -----
 
-![Architecture diagram](/architecture.png)
+![Architecture diagram](architecture.png)
 
 * A MongoDb database backed by a Docker volume
 * A Redis database backed by a Docker volume
