@@ -1,4 +1,5 @@
 # Dependency directory
 
+.env
 # Editors
 .vscode

@@ -18,7 +18,17 @@ services:
       - '3000:3000'
     networks:
       - mcrsrv-net
-
+    environment:
+      - REDIS_HOST
+      - REDIS_PORT
+      - SERVER_URI=${WEB_APP_API_SRV_URI}
+      - SERVER_PORT=${WEB_APP_API_SRV_PORT}
+    # redirection  
+      - AUTH_ADMIN_SRV_URI
+      - AUTH_ADMIN_SRV_PORT
+      - AUTH_SRV_URI
+      - AUTH_SRV_PORT
+  
   auth-admin:
     container_name: auth-admin
     build: ../services/authentication-admin
@@ -32,6 +42,10 @@ services:
       - '3100:3100'
     networks:
       - mcrsrv-net
+    environment:
+      - MONGODB_URI_LOCAL
+      - SERVER_URI=${AUTH_ADMIN_SRV_URI}
+      - SERVER_PORT=${AUTH_ADMIN_SRV_PORT}
 
   auth:
     container_name: auth
@@ -46,6 +60,10 @@ services:
       - '3200:3200'
     networks:
       - mcrsrv-net
+    environment:
+      - MONGODB_URI_LOCAL
+      - SERVER_URI=${AUTH_SRV_URI}
+      - SERVER_PORT=${AUTH_SRV_PORT}
 
   author-admin:
     container_name: author-admin
@@ -60,6 +78,10 @@ services:
       - '3300:3300'
     networks:
       - mcrsrv-net
+    environment:
+      - MONGODB_URI_LOCAL
+      - SERVER_URI=${AUTHOR_ADMIN_SRV_URI}
+      - SERVER_PORT=${AUTHOR_ADMIN_SRV_PORT}
 
   author:
     container_name: author
@@ -74,6 +96,10 @@ services:
       - '3400:3400'
     networks:
       - mcrsrv-net
+    environment:
+      - MONGODB_URI_LOCAL
+      - SERVER_URI=${AUTHOR_SRV_URI}
+      - SERVER_PORT=${AUTHOR_SRV_PORT}
 
   db:
     container_name: db
@@ -89,7 +115,7 @@ services:
     container_name: redis
     image: 'redis:3.2-alpine'
     ports:
-      - '6379:6379'
+      - '${REDIS_PORT}:${REDIS_PORT}'
     networks:
       - mcrsrv-net
     # volumes:
