@@ -9,14 +9,19 @@ Download [Docker](https://www.docker.com/products/overview). If you are on Mac o
 Run in this directory:
 
 ```docker
+docker-compose up --build
+```
+or 
+```docker
 docker-compose up
 ```
 
+Stop
 ```docker
 docker-compose stop
 ```
 
-The app will be running at [http://localhost:4300](http://localhost:43000).
+The app will be running at [http://localhost:3000](http://localhost:3000).
 
 Architecture
 -----
