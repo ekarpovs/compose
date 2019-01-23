@@ -37,7 +37,7 @@ Architecture
 * Example of An Angular front end SPA - it is not dockernazed.
 
 Folders structure:
-
+----
 mcrsrv-curl
 mcrsrv-postman
 clients
