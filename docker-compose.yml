@@ -12,10 +12,8 @@ services:
      - 'author-admin'
      - 'author'
     command: nodemon --debug index.js
-    # volumes:
-    #  - ../authentication-admin:/app
     ports:
-      - '3000:3000'
+      - '${WEB_APP_API_SRV_PORT}:${WEB_APP_API_CONT_PORT}'
     networks:
       - mcrsrv-net
     environment:
@@ -36,10 +34,8 @@ services:
     depends_on: 
      - 'db'
     command: nodemon --debug index.js
-    # volumes:
-    #  - ../authentication-admin:/app
     ports:
-      - '3100:3100'
+      - '${AUTH_ADMIN_SRV_PORT}:${AUTH_ADMIN_CONT_PORT}'
     networks:
       - mcrsrv-net
     environment:
@@ -54,10 +50,8 @@ services:
     depends_on: 
      - 'db'
     command: nodemon --debug index.js
-    # volumes:
-    #  - ../authentication:/app
     ports:
-      - '3200:3200'
+      - '${AUTH_SRV_PORT}:${AUTH_CONT_PORT}'
     networks:
       - mcrsrv-net
     environment:
@@ -72,10 +66,8 @@ services:
     depends_on: 
      - 'db'
     command: nodemon --debug index.js
-    # volumes:
-    #  - ../authentication:/app
     ports:
-      - '3300:3300'
+      - '${AUTHOR_ADMIN_SRV_PORT}:${AUTHOR_ADMIN_CONT_PORT}'
     networks:
       - mcrsrv-net
     environment:
@@ -90,10 +82,8 @@ services:
     depends_on: 
      - 'db'
     command: nodemon --debug index.js
-    # volumes:
-    #  - ../authentication:/app
     ports:
-      - '3400:3400'
+      - '${AUTHOR_SRV_PORT}:${AUTHOR_CONT_PORT}'
     networks:
       - mcrsrv-net
     environment:
@@ -104,8 +94,6 @@ services:
   db:
     container_name: db
     image: mongo
-    # volumes:
-    #   - ./db:/data"
     ports:
       - '27017:27017'
     networks:
@@ -118,13 +106,6 @@ services:
       - '${REDIS_PORT}:${REDIS_PORT}'
     networks:
       - mcrsrv-net
-    # volumes:
-    #   - 'redis:/data'
-
-  # volumes:
-  # #   db-data: {}
-  #   redis: {}
-
 
 networks:
   mcrsrv-net:
