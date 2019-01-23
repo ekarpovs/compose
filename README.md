@@ -11,12 +11,15 @@ Run in this directory:
 ```docker
 docker-compose up --build
 ```
-or 
+
+or
+
 ```docker
 docker-compose up
 ```
 
-Stop
+Stop:
+
 ```docker
 docker-compose stop
 ```
